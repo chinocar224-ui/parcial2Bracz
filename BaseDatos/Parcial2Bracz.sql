@@ -2,7 +2,7 @@
    Parcial 2 - Canal de televisión
    Base de datos : Parcial2Bracz
    Usuario       : usrparcial2 / 12345678
-   Ejecutar en SSMS conectado a (localdb)\MSSQLLocalDB (o su instancia SQL Server)
+   Ejecutar conectado a (localdb)\MSSQLLocalDB (o su instancia SQL Server)
    ===================================================================== */
 USE master;
 GO
@@ -35,24 +35,25 @@ CREATE TABLE HorarioPrograma (
     horaFin            TIME         NOT NULL,      -- Ej: 10:15
     diaSemana          VARCHAR(20)  NOT NULL,
     conductorPrincipal VARCHAR(100) NOT NULL,
-    estado             SMALLINT     NOT NULL DEFAULT 1,   -- 1: Activo, 0: Inactivo, -1: Eliminado
+    tipo               VARCHAR(30)  NOT NULL DEFAULT 'Farándula',  -- Farándula, Deportes, Cocina, Niños
+    estado             SMALLINT     NOT NULL DEFAULT 1,            -- 1: Activo, 0: Inactivo, -1: Eliminado
     CONSTRAINT fk_HorarioPrograma_Canal FOREIGN KEY (idCanal) REFERENCES Canal (id)
 );
 GO
 
 /* ------------------------ DATOS DE EJEMPLO ----------------------- */
 INSERT INTO Canal (nombre, frecuencia, estado) VALUES
-    ('Bolivisión', '4 VHF',   1),
-    ('Unitel',     '9 VHF',   1),
-    ('Red Uno',    '5 VHF',   1);
+    ('Bolivisión', '4 VHF', 1),
+    ('Unitel',     '9 VHF', 1),
+    ('Red Uno',    '5 VHF', 1);
 GO
 
-INSERT INTO HorarioPrograma (idCanal, titulo, horaInicio, horaFin, diaSemana, conductorPrincipal, estado) VALUES
-    (1, 'Buenos Días Bolivia',  '07:00', '09:00', 'Lunes',     'Carlos Mendoza', 1),
-    (1, 'Noticiero Central',    '20:00', '21:00', 'Lunes',     'Ana Rojas',      1),
-    (2, 'Mañanas de Unitel',    '06:30', '08:30', 'Martes',    'Luis Salvatierra', 1),
-    (2, 'Cine en Casa',         '21:00', '23:15', 'Viernes',   'Marcela Flores', 1),
-    (3, 'Deportes al Día',      '13:00', '14:00', 'Miércoles', 'Diego Vargas',   1);
+INSERT INTO HorarioPrograma (idCanal, titulo, horaInicio, horaFin, diaSemana, conductorPrincipal, tipo, estado) VALUES
+    (1, 'Buenos Días Bolivia', '07:00', '09:00', 'Lunes',     'Carlos Mendoza',   'Farándula', 1),
+    (1, 'Noticiero Central',   '20:00', '21:00', 'Lunes',     'Ana Rojas',        'Farándula', 1),
+    (2, 'Mañanas de Unitel',   '06:30', '08:30', 'Martes',    'Luis Salvatierra', 'Farándula', 1),
+    (2, 'Cine en Casa',        '21:00', '23:15', 'Viernes',   'Marcela Flores',   'Farándula', 1),
+    (3, 'Deportes al Día',     '13:00', '14:00', 'Miércoles', 'Diego Vargas',     'Deportes',  1);
 GO
 
 /* ------------------- USUARIO PARA LA APLICACIÓN ------------------ */

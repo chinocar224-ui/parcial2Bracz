@@ -22,6 +22,7 @@ namespace CpParcial2Bracz
         {
             cargarCanales();
             cargarDiasSemana();
+            cargarTipos();
             listar();
             habilitarEdicion(false);
         }
@@ -41,6 +42,11 @@ namespace CpParcial2Bracz
             cbxDiaSemana.Items.AddRange(Constantes.DiasSemana);
             cbxDiaSemana.SelectedIndex = -1;
         }
+        private void cargarTipos()
+        {
+            cbxTipo.Items.AddRange(Constantes.Tipos);
+            cbxTipo.SelectedIndex = -1;
+        }
 
         private void listar()
         {
@@ -50,6 +56,7 @@ namespace CpParcial2Bracz
             dgvLista.Columns["idCanal"].Visible = false;
             dgvLista.Columns["canal"].HeaderText = "Canal";
             dgvLista.Columns["titulo"].HeaderText = "Título";
+            dgvLista.Columns["tipo"].HeaderText = "Tipo";
             dgvLista.Columns["horaInicio"].HeaderText = "Hora Inicio";
             dgvLista.Columns["horaInicio"].DefaultCellStyle.Format = FormatoHora;
             dgvLista.Columns["horaFin"].HeaderText = "Hora Fin";
@@ -89,10 +96,12 @@ namespace CpParcial2Bracz
         {
             cbxCanal.SelectedIndex = -1;
             cbxDiaSemana.SelectedIndex = -1;
+            cbxTipo.SelectedIndex = -1;
             txtTitulo.Clear();
             txtConductor.Clear();
             dtpHoraInicio.Value = DateTime.Today.AddHours(9);
             dtpHoraFin.Value = DateTime.Today.AddHours(10);
+
             erpError.Clear();
         }
 
@@ -118,6 +127,7 @@ namespace CpParcial2Bracz
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+
             esNuevo = false;
             resetearCampos();
 
@@ -125,6 +135,7 @@ namespace CpParcial2Bracz
             cbxCanal.SelectedValue = programa.idCanal;
             cbxDiaSemana.SelectedItem = programa.diaSemana;
             txtTitulo.Text = programa.titulo;
+            cbxTipo.SelectedItem = programa.tipo;
             txtConductor.Text = programa.conductorPrincipal;
             dtpHoraInicio.Value = DateTime.Today.Add(programa.horaInicio);
             dtpHoraFin.Value = DateTime.Today.Add(programa.horaFin);
@@ -159,6 +170,11 @@ namespace CpParcial2Bracz
                 erpError.SetError(cbxDiaSemana, "El día de la semana es obligatorio");
                 esValido = false;
             }
+            if (cbxTipo.SelectedIndex == -1)
+            {
+                erpError.SetError(cbxTipo, "El tipo es obligatorio");
+                esValido = false;
+            }
             if (obtenerHora(dtpHoraFin) <= obtenerHora(dtpHoraInicio))
             {
                 erpError.SetError(dtpHoraFin, "La hora de fin debe ser mayor a la hora de inicio");
@@ -184,6 +200,7 @@ namespace CpParcial2Bracz
                 horaInicio = obtenerHora(dtpHoraInicio),
                 horaFin = obtenerHora(dtpHoraFin),
                 diaSemana = cbxDiaSemana.SelectedItem.ToString(),
+                tipo = cbxTipo.SelectedItem.ToString(),
                 conductorPrincipal = txtConductor.Text.Trim()
             };
 

@@ -15,5 +15,6 @@ namespace ClnParcial2Bracz
         public TimeSpan horaFin { get; set; }
         public string diaSemana { get; set; }
         public string conductorPrincipal { get; set; }
+        public string tipo { get; set; }
     }
 }

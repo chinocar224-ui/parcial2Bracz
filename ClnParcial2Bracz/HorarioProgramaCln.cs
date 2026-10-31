@@ -34,6 +34,7 @@ namespace ClnParcial2Bracz
                 existe.horaInicio = programa.horaInicio;
                 existe.horaFin = programa.horaFin;
                 existe.diaSemana = programa.diaSemana;
+                existe.tipo = programa.tipo;
                 existe.conductorPrincipal = programa.conductorPrincipal;
 
                 return context.SaveChanges();
@@ -87,6 +88,7 @@ namespace ClnParcial2Bracz
                         horaInicio = x.horaInicio,
                         horaFin = x.horaFin,
                         diaSemana = x.diaSemana,
+                        tipo = x.tipo,
                         conductorPrincipal = x.conductorPrincipal
                     })
                     .ToList();
@@ -101,6 +103,9 @@ namespace ClnParcial2Bracz
 
         private static void validar(Parcial2BraczEntities context, HorarioPrograma programa)
         {
+            if (!Constantes.Tipos.Contains(programa.tipo))
+                throw new Exception($"El tipo '{programa.tipo}' no es válido");
+
             if (!Constantes.DiasSemana.Contains(programa.diaSemana))
                 throw new Exception($"El día de la semana '{programa.diaSemana}' no es válido");
 

@@ -56,6 +56,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.erpError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblTipo = new System.Windows.Forms.Label();
+            this.cbxTipo = new System.Windows.Forms.ComboBox();
             this.gbxLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.pnlAcciones.SuspendLayout();
@@ -123,7 +125,7 @@
             this.dgvLista.ReadOnly = true;
             this.dgvLista.RowHeadersWidth = 51;
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLista.Size = new System.Drawing.Size(849, 159);
+            this.dgvLista.Size = new System.Drawing.Size(849, 165);
             this.dgvLista.TabIndex = 0;
             // 
             // pnlAcciones
@@ -179,6 +181,8 @@
             // 
             // gbxDatos
             // 
+            this.gbxDatos.Controls.Add(this.cbxTipo);
+            this.gbxDatos.Controls.Add(this.lblTipo);
             this.gbxDatos.Controls.Add(this.lblCanal);
             this.gbxDatos.Controls.Add(this.cbxCanal);
             this.gbxDatos.Controls.Add(this.lblTituloPrograma);
@@ -195,7 +199,7 @@
             this.gbxDatos.Controls.Add(this.btnCancelar);
             this.gbxDatos.Location = new System.Drawing.Point(12, 336);
             this.gbxDatos.Name = "gbxDatos";
-            this.gbxDatos.Size = new System.Drawing.Size(861, 140);
+            this.gbxDatos.Size = new System.Drawing.Size(861, 162);
             this.gbxDatos.TabIndex = 6;
             this.gbxDatos.TabStop = false;
             this.gbxDatos.Text = "Datos";
@@ -332,12 +336,30 @@
             // 
             this.erpError.ContainerControl = this;
             // 
+            // lblTipo
+            // 
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Location = new System.Drawing.Point(18, 135);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(53, 24);
+            this.lblTipo.TabIndex = 14;
+            this.lblTipo.Text = "Tipo:";
+            // 
+            // cbxTipo
+            // 
+            this.cbxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTipo.FormattingEnabled = true;
+            this.cbxTipo.Location = new System.Drawing.Point(204, 129);
+            this.cbxTipo.Name = "cbxTipo";
+            this.cbxTipo.Size = new System.Drawing.Size(205, 32);
+            this.cbxTipo.TabIndex = 15;
+            // 
             // FrmProgramas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(885, 488);
+            this.ClientSize = new System.Drawing.Size(885, 504);
             this.Controls.Add(this.gbxDatos);
             this.Controls.Add(this.pnlAcciones);
             this.Controls.Add(this.gbxLista);
@@ -393,6 +415,8 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ErrorProvider erpError;
+        private System.Windows.Forms.ComboBox cbxTipo;
+        private System.Windows.Forms.Label lblTipo;
     }
 }
 

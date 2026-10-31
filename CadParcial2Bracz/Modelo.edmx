@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Parcial2BraczModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Parcial2BraczModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canal">
           <Key>
             <PropertyRef Name="id" />
@@ -25,6 +25,7 @@
           <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
           <Property Name="diaSemana" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="conductorPrincipal" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="estado" Type="smallint" Nullable="false" />
         </EntityType>
         <Association Name="fk_HorarioPrograma_Canal">
@@ -47,8 +48,7 @@
             <End Role="HorarioPrograma" EntitySet="HorarioPrograma" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Parcial2BraczModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -75,6 +75,7 @@
           <Property Name="conductorPrincipal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Canal" Relationship="Self.fk_HorarioPrograma_Canal" FromRole="HorarioPrograma" ToRole="Canal" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_HorarioPrograma_Canal">
           <End Role="Canal" Type="Self.Canal" Multiplicity="1" />
@@ -115,6 +116,7 @@
           <EntitySetMapping Name="HorarioPrograma">
             <EntityTypeMapping TypeName="Parcial2BraczModel.HorarioPrograma">
               <MappingFragment StoreEntitySet="HorarioPrograma">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idCanal" ColumnName="idCanal" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
